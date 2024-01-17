@@ -410,3 +410,216 @@ do{
 }while(username.length<=5);
 console.log(username);
 console.log("Bonjour je m'appelle "+ prenom + " et j'ai "+ age +" ans.")*/
+
+ * LES TABLEAUX:
+ * tableau => array est un élément de type objet en JS et permet de stocker plusieurs simultanément, ce qu'une simple variable ne peux pas faire
+ * IL y a deux manière de déclarer un tableau:
+ *  Utiliser l'objet global Array: let array = new Array();
+ * let array [];
+ * On peux y stocker n'importe quel type de donnée et autant de donnée que souhaiter
+ * 
+ */
+let anime = new Array("Naruto", "Bleach", "Death Note", "Pokemon", "One piece", "Fullmetal alchemist", "Evangelion");
+console.log(anime);
+
+
+/**
+ * Un tableau contient de paire "clé-valeur"
+ * Un tableau commence toujours par la clé / l'index n°0 => La première valeur correspond à la N°0
+ * Pour afficher le tableau il faut appeler le tableau en question et ajouter des crochet avce le n° de clé
+ */
+
+let game = ["Zelda", "The last of us", "Tetris", "The witcher", "Half life"];
+let firstgame = game[0];
+console.log(firstgame);
+
+
+/**
+ * Pour connaître le nombre d'élément dans un tableau, on utilise la fonction .length :
+ */
+let totalGames = games.length;
+console.log(totalGames);
+
+//Pour modifier une valeur se trouvant dans le tableau
+
+anime[0] = "Samuraï Champloo";
+console.log(anime);
+// si on ajoute la valeur et que la clé n'existe pas, une nouvelle clé est créé
+anime[10] = "Dragon Ball Z";
+console.log(anime);
+
+
+
+/**
+ * LES TABLEAUX multidimentionnels:
+ * IL s'agit simpelment d'imbrications de tableaux.
+ * NB: IL est plus rare mais parfaitement possible de voir des tableaux avec plus de 3 niveaux d'imbrications.
+ * 
+ */
+
+let user = ["Etudiant", ["Dupond", "Jean", 23], spécialité ["DevOps", "Groupe 1", "1ère année"], [27, "rue du progrès", 93100, "Montreuil", ["France", true]]];
+console.log(user);
+
+//let user = ["étudiant", ["Dupont", "Jean", 23], "spécialité",["Devops", "Groupe 1", "1ère année"], [27, "Rue du progrès", 93100, "Montreuil", ["France", true]]];
+
+console.log(user[0]);
+console.log(user[1][1]);
+console.log(user[4][3]);
+console.log(user[4][4][0]);
+
+
+/**
+ * LIMITATION: impossible de donner des "noms" à la place des clés, en JS la notion de tableau associatid n'existe pas pour contourner le problème
+ * il faut créer un objet
+ * LES FONCTIONS NATIVES autour des tableaux:
+ * .push(): permet d'ajouter une ou plusieurs valeurs à la fin d'un tableau
+ * .pop(): permet de supprimer le dernier élément un tableau (un seul élément)
+ * .unshift(): permet d'ajouter un ou plusieurs éléments en début de tableau
+ * .shift(): permet de supprimer la 1ère valeur d'un tableau
+ * .splice(clé, nb élément, option): permet d'ajouter, supprimer, modifier une portion du tableau
+ * .slice(début, fin): permet de faire une copie complète ou partielle d'un tableau
+ */
+ 
+ //EXERCICE:
+/**
+ * variable client => tableau vide
+ * attribuer la valeur Pierre en tant que 1er élément
+ * ajouter un num de tel
+ * remplacer le prenom pierre par robert
+ * ajouter une adresse sous forme de tableau imbriqué (N°, nom de rue, code postale, ville)
+ */
+ 
+let client = [""];
+client.unshift("Pierre");
+console.log(client);
+client.push("0603544371");
+console.log(client);
+client.splice(0, 1,"Robert");
+console.log(client);
+client.push([1, "rue du progrès", 93100, "Montreuil"]);
+console.log(client);
+
+//EXERCICE:
+ * Créer un tableau avec valeur suivante: 1,2,3,4,5
+ * suppr la 1ère valeur
+ * suppr la 1ère valeur encore
+ * surppr l'index 2
+ * ajouter la valeur 6 à la fin du tab
+ * insérer les valeur 10, 11,12, à partir de la 2ème position
+ * déplacer le dernier élément au début
+ * afficher le résultat
+ * résultat attendu [9 ,10,11,12,3,5,6,7,8]
+
+
+
+let tab = [1, 2, 3, 4, 5];
+tab.shift(0);
+console.log(tab);
+tab.shift(0);
+console.log(tab);
+tab.splice(1,1);
+console.log(tab);
+tab.push(6);
+console.log(tab);
+tab.push(7,8,9);
+console.log(tab);
+tab.pop()
+tab.unshift(9);
+console.log(tab);
+tab.splice(1,0,10,11,12)
+console.log(tab);
+/**
+ * EXERCICE 3:
+ * Déclarer un tab vide
+ * avce une boucle for() peupler le tab avec la suite de nombre allant de 10 à 20
+ * 
+ */
+/*
+let tab = [];
+for(i = 10; i<=20; i++){
+    tab.push(i);
+    console.log(tab);
+}
+*/
+
+// BOUCLE DANS UN TABLEAU
+/**
+ * for(): utilisé pour parcourir le tableau avec un accès à l'indice de chaque élément
+ * for .... of : utilisé pour parcourir les éléments d'un tableau sans se soucier de leurs clés
+ * .forEach : boucle qui permet de prendre en compte plusieurs paramètre
+ * .map(): comme forEach à l'exception qu'elle crée un nouvreau tableau avce les valeurs
+ */
+ 
+ let weekdays = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","samedi","dimanche"];
+for(index = 0; index <weekdays.length; index++){
+    console.log(weekdays[index]);
+}
+//For.... of
+for(day of weekdays){
+    console.log(day);
+}
+//.forEach
+weekdays.forEach(function(day, index){
+    console.log(index + " : " + day);
+});
+
+
+//.map
+weekdays.map((day,index)=>{
+    console.log(index + " : " + day);
+});
+
+// Autre fonction utile
+/**
+ * .join(): retourne une chaîne de caractère crée en cacaténant les différentse valeurs d'un tableau
+ * Par défaut, le séparateur est la virgule
+ * .concat(): permet de fusionner les diff tableaux entre eux et de créee un nouveau. Elle prend comme argument les tableaux sélectionner
+ * .include(): permet de déterminer si un tableau contient une valeur qu'on va passer en argument, si c'est le cax true sinon false
+ * 
+ */
+ const concat = user.concat(weekdays);
+console.log(concat);
+const members = ["Emilie", "Karim", "Justin", "Pierre"];
+console.log(members.includes("Karim"));
+const join = members.join(" / ");
+console.log(join);
+
+
+
+
+
+// LES OBJETS:
+/**
+ * On utilise les acolades pour définir un objet
+ */
+
+let pokemon ={};
+let pikachu = {
+    name: "Pikachu",
+    type: "electric",
+    level: 15,
+    pv: 65,
+    moves: [
+        {
+            name: "Thunder wave",
+            description: "Paralyzes the oppenent"     ,  
+        },
+        {
+            name: "Electro ball",
+            description: "Deal damage",
+        }
+    ],
+    caracteristics: {
+
+    }
+}
+
+
+// pour accéder aux différentes valeur d'un objet on utilise le point (.)
+console.log(pikachu.name);
+console.log(pikachu.moves[0].name);
+
+
+for(const pokemon in  pikachu){
+    console.log(pokemon);
+}
