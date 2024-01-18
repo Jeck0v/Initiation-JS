@@ -623,3 +623,198 @@ console.log(pikachu.moves[0].name);
 for(const pokemon in  pikachu){
     console.log(pokemon);
 }
+
+
+// LES DATES:
+/**
+ * Les dates sont des objets
+ * JS stocke les dates sous forme de timestamp Unix exprimé en MS qui multiplier par 1000 donne des secondes écoulée depuis le 1er janvier 1970 UTC
+ * C'est à dire l'heure de Londres.
+ * Par convention on utilise les dates américaines c'est à dire, années / mois / jours / heures / minutes / secondes / milisecondes
+ * Il s'agit du format internationnal ISO
+ * IL est possible de créer une date à partir des 7 paramètres de l'objet date OU à partir d'une chaîne de caractères.
+ * /!\ JavaScript compte les mois de 0 à 11 (janvier = 0 et décembre = 11)
+ * 
+ */
+
+// Pour déclarer une date:
+/**
+ * On utilise le mot clé "new" et l'objet date:*/
+/* 
+let now = new Date();
+console.log(now);
+//NB: Les objets sont statics, ils ne bougent pas
+
+let dateFromParams = new Date(2024, 0, 1, 5, 0, 0);
+console.log(dateFromParams);
+
+let dateFromString = new Date("01-01-2024 05:00:00");
+console.log(dateFromString);*/
+
+/**
+ * En JS new Date() renvoie un objet avec la date actuelle et l'heure
+ * Ce dernier possède un certain nombre de méthodes pour accéder et manipuler les composants d'une dates.
+ * 
+ * Les GETTERS:
+ * getFullYear() : renvoie l'année (yyyy)
+ * getMonth() : renvoie le mois (entre 0 et 11)
+ * getDate() : renvoie le jour (entre 1 et 31)
+ * getDay() : renvoie le jour de la semaine (entre 0 et 6)
+ * getHours() : renvoie l'heure (entre 0 et 23)
+ * getMinutes() : renvoie les minutes (entre 0 et 59)
+ * getSecondes() : rnevoie les secondes (entre 0 et 59)
+ * getMilisecondes() : renvoie les milisecondes
+ * getTime() : renvoie le nombre de milisecondes écoulée depuis le 1er janvier 1970 
+ */
+
+/**
+ * Les SETTERS: 
+ * setFullYear() : règle l'année 
+ * setMonth() : règle le mois (entre 0 et 11)
+ * setDate() : règle le jour (entre 1 et 31)
+ * setHours() : règle l'heure (entre 0 et 23)
+ * setMinutes() : règles les minutes (entre 0 et 59)
+ * setSecondes() : règles les secondes (entre 0 et 59)
+ * setMilisecondes() : règles les milisecondes (entre 0 et 999)
+ * setTime() :  règle l'heure en milisecondes depuis le 1er janvier 1970
+ * 
+ */
+/**
+ 
+L'objet date dispose également de méthodes pour convertir une date au format local :
+.toLocaleDateString() : renvoie la partie "jour-mois-année" d'une date, formatée en fonction d'une "locale" et d'options
+.toLocaleTimeString() : renvoie la partie "heure-minutes-secondes" d'une date, formaté en fonction d'une "locale" et d'options
+.toLocaleString() : renvoie la date complète, formatée...
+*/
+/*
+let newDate = new Date();
+newDate.toLocaleString("fr-FR",{
+ weekday: "long",
+ year: "numeric",
+ month: "long",
+ hour: "numeric",
+ minute: "numeric",
+ second: "numeric",
+});
+console.log(newDate)
+*/
+/**
+ * la "locale" sert à définir la langue dans laquelle la date doit être firmaté (france => "fr-FR")
+ */
+
+/**
+ * weekday : "narrow", "short" ou "long"
+ * day : "numeric" ou "2-digit"
+ * month : "numeric" ou "2-digit"
+ * year : "numeric" ou "2-digit"
+ * hour : "numeric" ou "2-digit"
+ * minutes : "numeric" ou "2-digit"
+ * secondes : "numeric" ou "2-digit"
+ * 
+ */
+
+
+// EXERCICE (BORING): 
+/**
+ * Calculer et afficher la différence en jours entre le 1 janvier 2024 et aujourd'hui
+ */
+/*
+let today = new Date();
+let janvier2024 = new Date(2024, 0, 1);
+
+let diffMilliseconds = today - janvier2024;
+let diffDays = diffMilliseconds / (1000 * 60 * 60 * 24); 
+
+console.log(`la diff de jour entre le 1er janvier 2024 et aujourd'hui est de ${Math.floor(diffDays)} jours`);*/
+
+
+/**
+ * LES FONCTIONS: 
+ * 
+ * Anonyme:
+ * une fonction qui est déclaré sans nom
+ * 
+ */
+/*
+ 
+LES FONCTIONS EN JS 
+Une fonction contient des lignes de code qui peuvent etres utilisées plusieurs fois
+Pour créer une fonction, on respecte deux etapes fondamentales:
+declarer et creation de la fonction
+appel de la fonction
+*/
+/*
+(function () {alert("Ceci est une function anonyme")});
+(function () {alert("Ceci est une function anonyme auto appeler")} ());*/
+/*function name(){
+    //code
+}
+name();*/
+/*
+let anonymousFct= function(){alert("Focntion anonyme stockée dans une variable")};
+// anonymousFct();
+
+// Appeller la fonction dans un evnement
+document.addEventListener('DOMContentLoaded', anonymousFct());*/
+// Appeller la fonction dans un evnement
+// document.addEventListener('DOMContentLoaded', anonymousFct());
+/*
+function sayHi() { // On declare la fonction sans lui passser d'argument 
+    return "Bonjour "; // On retourne le resultat de la fonctiion grace au mot clé "return"
+}
+console.log(sayHi());
+
+//AVEC 1 PARAMETRE
+function sayHiToUser(name="inconnu") {
+    return "Bonjour " + name;
+}
+console.log(sayHiToUser("Pierre"));*/
+/*
+console.log(sayHi());
+// S'il n'y a pas de parametre passé dans la fonction lorsqu'elle est appellée, deux cas possibles: soit "undefined" lorsqu'on a pas precisé de valeur par defaut, soit le parametre par defaut s'il a ete precisé
+
+//AVEC 1 PARAMETRE
+function sayHiToUser(name = "inconnu") {
+    return "Bonjour" + name;
+}
+console.log(sayHiToUser("Pierre"));
+
+// AVEC 2 PARAMETRE
+function fullName(firstname = "Jean", lastname = "Dpond"){
+    return "tu t'appelle" + firstname + "" + lastname
+}
+console.log(fullName("Jean", "Valjean"));
+// 2 parametres separes par une virgule
+
+// On peut stocker une fonction dans une variable 
+let hello = sayHiToUser();
+console.log(hello); */
+
+
+// Si aucun argument n'est passé dans l'appel de la fonction, c'est alors soit la valeur par defaut, soit "undefined" qui est retournée
+/*
+let hello = sayHiToUser("Bernard");
+console.log(hello);
+*/
+/**
+ 
+EXO
+créer une fonction nommée addition et lui passser deux parametre differents
+créer une variable(locale) nommée "sum" a l'interieur de la fonction
+faire le calcul des deux parametres en tant que valeur de la variable sum
+retourner le resultat de la variable sum
+appeler la fonction avc les parametre 20 et 10 comme arguments
+stocker le resultats de la fonction dans une variable nommé "result"
+afficher le resultat dans un console.log
+le resultat attendu est: 30
+*/ 
+/*
+function addition(vairable1, vairable2) {
+    let sum = vairable1 + vairable2;
+    return "Le résultat est " + sum;
+}
+
+let result = addition(20, 10);
+console.log(result);
+*/
+
